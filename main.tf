@@ -1,6 +1,6 @@
 module "vpc" {
-  source = "../modules/aws-vpc"
-
+  source = "./modules/aws-vpc"
+  
   vpc-name        = var.VPC-NAME
   vpc-cidr        = var.VPC-CIDR
   igw-name        = var.IGW-NAME
@@ -24,7 +24,7 @@ module "vpc" {
 }
 
 module "security-group" {
-  source = "../modules/security-group"
+  source = "./modules/security-group"
 
   vpc-name    = var.VPC-NAME
   alb-sg-name = var.ALB-SG-NAME
@@ -34,67 +34,67 @@ module "security-group" {
   depends_on = [module.vpc]
 }
 
-module "rds" {
-  source = "../modules/aws-rds"
+# module "rds" {
+#   source = "./modules/aws-rds"
+#   vpc-name             = var.VPC-NAME
+#   sg-name              = var.SG-NAME
+#   private-subnet-name1 = var.PRIVATE-SUBNET1
+#   private-subnet-name2 = var.PRIVATE-SUBNET2
+#   db-sg-name           = var.DB-SG-NAME
+#   rds-username         = var.RDS-USERNAME
+#   rds-pwd              = var.RDS-PWD
+#   db-name              = var.DB-NAME
+#   rds-name             = var.RDS-NAME
 
-  sg-name              = var.SG-NAME
-  private-subnet-name1 = var.PRIVATE-SUBNET1
-  private-subnet-name2 = var.PRIVATE-SUBNET2
-  db-sg-name           = var.DB-SG-NAME
-  rds-username         = var.RDS-USERNAME
-  rds-pwd              = var.RDS-PWD
-  db-name              = var.DB-NAME
-  rds-name             = var.RDS-NAME
+#   depends_on = [module.security-group]
+# }
 
-  depends_on = [module.security-group]
-}
+# module "alb" {
+#   source = "./modules/alb-tg"
 
-module "alb" {
-  source = "../modules/alb-tg"
+#   public-subnet-name1 = var.PUBLIC-SUBNET1
+#   public-subnet-name2 = var.PUBLIC-SUBNET2
+#   web-alb-sg-name     = var.ALB-SG-NAME
+#   alb-name            = var.ALB-NAME
+#   tg-name             = var.TG-NAME
+#   vpc-name            = var.VPC-NAME
 
-  public-subnet-name1 = var.PUBLIC-SUBNET1
-  public-subnet-name2 = var.PUBLIC-SUBNET2
-  web-alb-sg-name     = var.ALB-SG-NAME
-  alb-name            = var.ALB-NAME
-  tg-name             = var.TG-NAME
-  vpc-name            = var.VPC-NAME
+#   depends_on = [module.rds]
+# }
 
-  depends_on = [module.rds]
-}
+# module "iam" {
+#   source = "./modules/aws-iam"
 
-module "iam" {
-  source = "../modules/aws-iam"
+#   iam-role              = var.IAM-ROLE
+#   iam-policy            = var.IAM-POLICY
+#   instance-profile-name = var.INSTANCE-PROFILE-NAME
 
-  iam-role              = var.IAM-ROLE
-  iam-policy            = var.IAM-POLICY
-  instance-profile-name = var.INSTANCE-PROFILE-NAME
+#   depends_on = [module.alb]
+# }
 
-  depends_on = [module.alb]
-}
+# module "autoscaling" {
+#   source = "./modules/aws-autoscaling"
 
-module "autoscaling" {
-  source = "../modules/aws-autoscaling"
+#   ami_name              = var.AMI-NAME
+#   launch-template-name  = var.LAUNCH-TEMPLATE-NAME
+#   instance-profile-name = var.INSTANCE-PROFILE-NAME
+#   web-sg-name           = var.WEB-SG-NAME
+#   tg-name               = var.TG-NAME
+#   iam-role              = var.IAM-ROLE
+#   public-subnet-name1   = var.PUBLIC-SUBNET1
+#   public-subnet-name2   = var.PUBLIC-SUBNET2
+#   asg-name              = var.ASG-NAME
 
-  ami_name              = var.AMI-NAME
-  launch-template-name  = var.LAUNCH-TEMPLATE-NAME
-  instance-profile-name = var.INSTANCE-PROFILE-NAME
-  web-sg-name           = var.WEB-SG-NAME
-  tg-name               = var.TG-NAME
-  iam-role              = var.IAM-ROLE
-  public-subnet-name1   = var.PUBLIC-SUBNET1
-  public-subnet-name2   = var.PUBLIC-SUBNET2
-  asg-name              = var.ASG-NAME
+#   depends_on = [module.iam]
+# }
 
-  depends_on = [module.iam]
-}
+# module "route53" {
+#   source = "./modules/aws-waf-cdn-acm-route53"
 
-module "route53" {
-  source = "../modules/aws-waf-cdn-acm-route53"
+#   domain-name  = var.DOMAIN-NAME
+#   cdn-name     = var.CDN-NAME
+#   alb-name     = var.ALB-NAME
+#   web_acl_name = var.WEB-ACL-NAME
 
-  domain-name  = var.DOMAIN-NAME
-  cdn-name     = var.CDN-NAME
-  alb-name     = var.ALB-NAME
-  web_acl_name = var.WEB-ACL-NAME
-
-  depends_on = [ module.autoscaling ]
-}
+#   depends_on = [ module.autoscaling ]
+# }

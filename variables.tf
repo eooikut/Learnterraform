@@ -24,35 +24,35 @@ variable "ALB-SG-NAME" {}
 variable "WEB-SG-NAME" {}
 variable "DB-SG-NAME" {}
 
-# RDS
-variable "SG-NAME" {}
-variable "RDS-USERNAME" {}
-variable "RDS-PWD" {}
-variable "DB-NAME" {}
-variable "RDS-NAME" {}
+# # RDS
+# variable "SG-NAME" {}
+# variable "RDS-USERNAME" {}
+# variable "RDS-PWD" {}
+# variable "DB-NAME" {}
+# variable "RDS-NAME" {}
 
 
 
-# ALB
-variable "TG-NAME" {}
-variable "ALB-NAME" {}
+# # ALB
+# variable "TG-NAME" {}
+# variable "ALB-NAME" {}
 
-# IAM
-variable "IAM-ROLE" {}
-variable "IAM-POLICY" {}
-variable "INSTANCE-PROFILE-NAME" {}
+# # IAM
+# variable "IAM-ROLE" {}
+# variable "IAM-POLICY" {}
+# variable "INSTANCE-PROFILE-NAME" {}
 
-# AUTOSCALING
-variable "AMI-NAME" {}
-variable "LAUNCH-TEMPLATE-NAME" {}
-variable "ASG-NAME" {}
+# # AUTOSCALING
+# variable "AMI-NAME" {}
+# variable "LAUNCH-TEMPLATE-NAME" {}
+# variable "ASG-NAME" {}
 
-# CLOUDFFRONT
-variable "DOMAIN-NAME" {}
-variable "CDN-NAME" {}
+# # CLOUDFFRONT
+# variable "DOMAIN-NAME" {}
+# variable "CDN-NAME" {}
 
-# WAF
-variable "WEB-ACL-NAME" {}
+# # WAF
+# variable "WEB-ACL-NAME" {}
 
 
 
