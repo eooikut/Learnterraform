@@ -50,25 +50,7 @@ terraform destroy -var-file=variables.tfvars --auto-approve
 
 ### 🔹 **Storage & Database**  
 
-
-
 ### 🔹 **Networking & Optimization**  
-
-
----
-
-## 🛠️ Author & Community  
-
-
-
-📧 **Connect with me:**
-
-- **GitHub**: 
-
-
-- **LinkedIn**:   
-
----
 
 
 
