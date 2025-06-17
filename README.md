@@ -1,56 +1,36 @@
-# 🏗️ Two-Tier AWS Infrastructure with Terraform  
+# ☁️ Learn Terraform – AWS EC2 Example
 
-
-
-## 📌 Overview  
-
-This project demo: Create VPC with Security Group (Basic)  
-
+This project demonstrates a basic use case of **Terraform** to provision an **AWS EC2 instance** and configure a **Security Group** using variables and outputs.
 
 ---
 
-## 📖 Step-by-Step Guide  
+## 🔧 What it does
 
+- Provisions 1 EC2 instance (t2.micro)
+- Creates Security Group allowing ports 22 (SSH) and 80 (HTTP)
+- Outputs the public IP address of the instance
 
 ---
 
-## 🚀 Getting Started  
+## 📁 File Structure
 
-### 1️⃣ Clone the Repository  
+Learnterraform/
+├── main.tf # EC2 & SG resource definitions
+├── variables.tf # Input variables
+├── terraform.tfvars # Actual values for variables
+├── outputs.tf # Output IP
+├── provider.tf # AWS provider config
+## 🚀 How to Run
 
-```bash
-git clone https://github.com/eooikut/Learnterraform
-cd DevOps-Projects/DevOps-Project-11/
-```  
-
-### 2️⃣ Initialize and Apply Terraform  
+> ✅ Prerequisites: AWS credentials configured, Terraform installed
 
 ```bash
 terraform init
-terraform plan -var-file=variables.tfvars
-terraform apply -var-file=variables.tfvars --auto-approve
-```  
-
-### 3️⃣ Cleanup (Destroy Infrastructure)  
-
-```bash
-terraform destroy -var-file=variables.tfvars --auto-approve
-```  
----
-
-## 🏗️ Project Architecture Highlights  
-
-### 🔹 **Networking & Security**  
-
-✅ **VPC & Subnets** – Securely isolated environment for your application  
+terraform plan
+terraform apply
 
 
-### 🔹 **Compute & Scaling**  
+📎 Author
+Nguyen Xuan Hieu – DevOps Learner
 
-
-### 🔹 **Storage & Database**  
-
-### 🔹 **Networking & Optimization**  
-
-
-
+GitHub: @eooikut
